@@ -14,6 +14,10 @@ server.listen(PORT, () =>
 
 server.post('/api/users', (req, res) => {
     const userInfo = req.body
+
+    userInfo.name = "Timmy"
+    userInfo.bio = "A Developer"
+
     if (userInfo.name && userInfo.bio) {
         userInfo.id = shortid.generate();
 
@@ -23,4 +27,8 @@ server.post('/api/users', (req, res) => {
     } else {
         res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
     }
+})
+
+server.get('/api/users', (req, res) => {
+    res.status(200).json(users);
 })
